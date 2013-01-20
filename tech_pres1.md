@@ -77,19 +77,18 @@ MODIFICATION.
 ---
 ## (承前)
 
-	!c++
-
-	// 実装はどこか別のところにあるとする。
-	void DrawCircle(Circle c);
-	void DrawRectangle(Rectangle r);
-
-	void DrawAllShapes()
-	{
-		...
-		
-		for (i = 0; i < NUMBER_OF_SHAPETYPE; i++)
-		{
-			switch (ShapeList[i].shapeType)
+    !c++
+    // 以下２関数はどこか別のところでいい感じに実装されているとする。
+    void DrawCircle(Circle c);
+    void DrawRectangle(Rectangle r);
+    
+    void DrawAllShapes()
+    {
+        ...
+        
+        for (i = 0; i < NUMBER_OF_SHAPETYPE; i++)
+        {
+            switch (ShapeList[i].shapeType)
 			{
 			case SHAPETYPE_CIRCLE:	
 				DrawCircle((Circle)ShapeList[i]);
@@ -123,7 +122,7 @@ MODIFICATION.
 	void DrawAllShapes()
 	{
 		...
-		
+		// 何らかの形で図形をShapeLise[]の形で扱えるようにしたとする
 		for (i = 0; i < NUMBER_OF_SHAPETYPE; i++)
 		{
 			switch (ShapeList[i].shapeType)
@@ -138,7 +137,8 @@ MODIFICATION.
 		}
 	}
 
-図形を描くプログラムというお題でしたから、サポートする図形が増えるというのはかなり高確率で発生しそうな拡張と言えます。でも、関数DrawAllShapesは、Circle及びRectangle以外に、Triangleをサポートしたくなったら変更が必要になります。
+
+図形を描くプログラムというお題なので、サポートする図形が増えるというのはかなり高確率で発生しそうな拡張と言えます。でも、関数DrawAllShapesは、三角形(Triangle)をサポートしたくなったら変更が必要になります。
 
 この状況をして、DrawAllShapesは拡張に対して閉じている、というのです。
 
