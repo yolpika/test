@@ -49,25 +49,24 @@ MODIFICATION.
 
 ## こういうこと
 
-図形を描くプログラムを作っているとします。円形や矩形を描かねばなりません。図形を描くにあたって図形を描く順序が決まっているものとします。
-まず、まずい考え方。
+図形を描くプログラムを作っているとします。円形や矩形を描かねばなりません。
+まずは、まずい考え方から。
 
     !c++
 
 	class Shape
 	{
-		const 
 		int shapeType;
 	}
 
-	class Circle
+	class Circle : public Shape
 	{
 		Coord center;  // 中心座標
 		double radius; // 半径
 		   ...
 	}
 
-	class Rectangle
+	class Rectangle : public Shape
 	{
 		Coord topleft; // 左上座標
 		Size size;     // 幅と高さ
@@ -122,7 +121,7 @@ MODIFICATION.
 	void DrawAllShapes()
 	{
 		...
-		// 何らかの形で図形をShapeLise[]の形で扱えるようにしたとする
+		// 何らかの形で図形をShapeList[]の形で扱えるようにしたとする
 		for (i = 0; i < NUMBER_OF_SHAPETYPE; i++)
 		{
 			switch (ShapeList[i].shapeType)
@@ -149,6 +148,61 @@ MODIFICATION.
 
 ---
 
+# こうします。
+
+---
+    !c++
+    class Shape
+    {
+        virtual void DrawShape();
+	}
+	class Circle : public Shape
+	{
+		   ...
+		void DrawShape(); // Circleなりの描画 
+	}
+	class Rectangle : public Shape
+	{
+		   ...
+		void DrawShape(); // Rectangleなりの描画 
+	}
+	void DrawAllShapes()
+	{
+		...
+		// 何らかの形で図形をShapeList[]の形で扱えるようにしたとする
+		for (i = 0; i < NUMBER_OF_SHAPETYPE; i++)
+		{
+			ShapeList[i]->DrawShape();
+		}
+	}
+---
+# 何がよくなった？
+
+    !c++
+	void DrawAllShapes()
+	{
+		...
+		// 何らかの形で図形をShapeList[]の形で扱えるようにしたとする
+		for (i = 0; i < NUMBER_OF_SHAPETYPE; i++)
+		{
+			ShapeList[i]->DrawShape();
+		}
+	}
+
+- 図形が増えるにしたがって長たらしくなりそうだったswitch..case文が姿を消しました。
+- 仮に、今後新たな図形Triangleをサポートすることになっても、DrawAllShapesは無改造で済みます。
+
+# 拡張に際して変更が不要になりました。
+
+
+---
+
+TODO
+
+見極め。変化の起きやすさ。
+コンテキスト。
+
+---
 # SRP - 単一責務の原則
 
 Single Responsibility Principle ： 単一責務の原則
