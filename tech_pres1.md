@@ -132,9 +132,9 @@ MODIFICATION.
 	}
 
 
-図形を描くプログラムというお題なので、サポートする図形が増えるというのはかなり高確率で発生しそうな拡張と言えます。でも、関数DrawAllShapesは、三角形(Triangle)をサポートしたくなったら変更が必要になります。
+図形を描くプログラムというお題なので、サポートする図形が増えるというのはかなり高確率で発生しそうな拡張と言えます。でも、関数`DrawAllShapes`は、三角形(`Triangle`)をサポートしたくなったら変更が必要になります。
 
-この状況をして、__ DrawAllShapesは拡張に対して閉じている __  、というのです。
+この状況をして、__`DrawAllShapes`は拡張に対して閉じている__  、というのです。
 
 
 ---
@@ -147,7 +147,7 @@ MODIFICATION.
 
 ---
 
-コンストラクタ／デストラクタは省略しています
+まず、基底クラスたる`Shape`を"インターフェース"化します。
 
     !c++
     class Shape
@@ -156,6 +156,9 @@ MODIFICATION.
         virtual void DrawShape() = 0;
 	};
 
+その上で`Circle`と`Rectangle`に`Shape`インターフェースを実装します。
+
+    !c++
 	class Circle : public Shape
 	{
     public:
@@ -168,11 +171,14 @@ MODIFICATION.
 		void DrawShape(); // Rectangleなりの描画 
 	};
 
+.notes: コンストラクタ／デストラクタは省略しています
+
 ---
 
 #とやっておいて
 
 ---
+`DrawAllShapes`をこのように直します。
 
     !c++
 	void DrawAllShapes()
@@ -184,6 +190,10 @@ MODIFICATION.
 			ShapeList[i]->DrawShape();
 		}
 	}
+
+---
+
+# 何がよくなった？
 
 ---
 
@@ -203,7 +213,7 @@ MODIFICATION.
 - 図形が増えるにしたがって長たらしくなりそうだったswitch..case文が姿を消しました。
 - 仮に、今後新たな図形Triangleをサポートすることになっても、DrawAllShapesは無改造で済みます。
 
-DrawAllShapesは拡張に際して変更が不要、つまり__ 拡張に対して開いている __  状態になりました。
+`DrawAllShapes`は拡張に際して変更が不要、つまり__ 拡張に対して開いている __  状態になりました。
 
 ---
 
@@ -224,6 +234,9 @@ Single Responsibility Principle ： 単一責務の原則
 
 > THERE SHOULD NEVER BE MORE THAN ONE REASON FOR A
 > CLASS TO CHANGE.
+
+> あるクラスを変更しなければならないとしたら、
+> その理由はただ一つであるべきである。
 
 ---
 
