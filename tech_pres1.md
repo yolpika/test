@@ -240,8 +240,12 @@ Single Responsibility Principle ： 単一責務の原則
 
 ---
 
-# DIP - 依存関係逆転の原則
+# TEST
 
+--
+
+# DIP - 依存関係逆転の原則
+T
 Dependency Inversion Principle ： 依存関係逆転の原則
 
 ## 定義
