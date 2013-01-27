@@ -50,28 +50,23 @@ MODIFICATION.
 ## こういうこと
 
 図形を描くプログラムを作っているとします。円形や矩形を描かねばなりません。
-まずは、まずい考え方から。
+まずは、まずいやり方から。
 
     !c++
-
 	class Shape
 	{
 		int shapeType;
-	}
-
-	class Circle : public Shape
+	};
+    class Circle : public Shape
 	{
 		Coord center;  // 中心座標
 		double radius; // 半径
-		   ...
-	}
-
+	};
 	class Rectangle : public Shape
 	{
 		Coord topleft; // 左上座標
 		Size size;     // 幅と高さ
-		   ...
-	}
+	};
 
 ---
 ## (承前)
@@ -137,9 +132,9 @@ MODIFICATION.
 	}
 
 
-図形を描くプログラムというお題なので、サポートする図形が増えるというのはかなり高確率で発生しそうな拡張と言えます。でも、関数DrawAllShapesは、三角形(Triangle)をサポートしたくなったら変更が必要になります。
+図形を描くプログラムというお題なので、サポートする図形が増えるというのはかなり高確率で発生しそうな拡張と言えます。でも、関数`DrawAllShapes`は、三角形(`Triangle`)をサポートしたくなったら変更が必要になります。
 
-この状況をして、DrawAllShapesは拡張に対して閉じている、というのです。
+`DrawAllShapes`は拡張による影響を受けやすく、これは__拡張に対して開いていない__  わけです。
 
 
 ---
@@ -148,24 +143,44 @@ MODIFICATION.
 
 ---
 
-# こうします。
+# こんな風にします。
 
 ---
+
+まず、基底クラスたる`Shape`を抽象化します。
+
     !c++
     class Shape
     {
-        virtual void DrawShape();
-	}
+    public:
+        virtual void DrawShape() = 0;
+	};
+
+その上で`Circle`と`Rectangle`に`Shape`インターフェースを実装します。
+
+    !c++
 	class Circle : public Shape
 	{
-		   ...
+    public:
 		void DrawShape(); // Circleなりの描画 
-	}
-	class Rectangle : public Shape
+	};
+
+    class Rectangle : public Shape
 	{
-		   ...
+    public:
 		void DrawShape(); // Rectangleなりの描画 
-	}
+	};
+
+.notes: コンストラクタ／デストラクタは省略しています
+
+---
+
+#とやっておいて
+
+---
+`DrawAllShapes`をこのように直します。
+
+    !c++
 	void DrawAllShapes()
 	{
 		...
@@ -175,7 +190,13 @@ MODIFICATION.
 			ShapeList[i]->DrawShape();
 		}
 	}
+
 ---
+
+# 何がよくなった？
+
+---
+
 # 何がよくなった？
 
     !c++
@@ -190,19 +211,21 @@ MODIFICATION.
 	}
 
 - 図形が増えるにしたがって長たらしくなりそうだったswitch..case文が姿を消しました。
-- 仮に、今後新たな図形Triangleをサポートすることになっても、DrawAllShapesは無改造で済みます。
+- もし今後新たな図形Triangleをサポートすることになっても、DrawAllShapesは無改造で済みます。
 
-# 拡張に際して変更が不要になりました。
+`DrawAllShapes`は拡張に際して変更が不要、つまり__ 拡張に対して開いている __  状態になりました。
 
+---
+
+# 留意点
+
+- もちろんいかなる場所にも、いかなる状況でも100%適用可能、というものではありません。
+
+- 
+---
 
 ---
 
-TODO
-
-見極め。変化の起きやすさ。
-コンテキスト。
-
----
 # SRP - 単一責務の原則
 
 Single Responsibility Principle ： 単一責務の原則
@@ -212,18 +235,27 @@ Single Responsibility Principle ： 単一責務の原則
 > THERE SHOULD NEVER BE MORE THAN ONE REASON FOR A
 > CLASS TO CHANGE.
 
+> あるクラスを変更しなければならないとしたら、
+> その理由はただ一つであるべきである。
+
 ---
 
-# DIP - 依存関係逆転の原則
+# TEST
 
+--
+
+# DIP - 依存関係逆転の原則
+T
 Dependency Inversion Principle ： 依存関係逆転の原則
 
 ## 定義
->A. HIGH LEVEL MODULES SHOULD NOT DEPEND UPON LOW
+> A. HIGH LEVEL MODULES SHOULD NOT DEPEND UPON LOW
 LEVEL MODULES. BOTH SHOULD DEPEND UPON ABSTRACTIONS.
-
 > B. ABSTRACTIONS SHOULD NOT DEPEND UPON DETAILS. DETAILS
 SHOULD DEPEND UPON ABSTRACTIONS.
+>
+> A. 上位のモジュールは、下位のモジュールに依存すべきでない。
+> B. 
 
 ---
 
@@ -249,3 +281,6 @@ Liskov's Substitution Principle ： リスコフの置換則
 > FUNCTIONS THAT USE POINTERS OR REFERENCES TO BASE
 CLASSES MUST BE ABLE TO USE OBJECTS OF DERIVED CLASSES
 WITHOUT KNOWING IT.
+
+---
+
