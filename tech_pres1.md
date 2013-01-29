@@ -391,14 +391,62 @@ Dependency Inversion Principle ： 依存関係逆転の原則
 ## 定義
 > A. HIGH LEVEL MODULES SHOULD NOT DEPEND UPON LOW
 LEVEL MODULES. BOTH SHOULD DEPEND UPON ABSTRACTIONS.
+
 > B. ABSTRACTIONS SHOULD NOT DEPEND UPON DETAILS. DETAILS
 SHOULD DEPEND UPON ABSTRACTIONS.
 >
 > A. 上位のモジュールは、下位のモジュールに依存すべきでない。
-> B. 抽象層は具象層に依存すべきではない。具象層は抽象層に依存すべきである。
+
+> B. 「抽象」は「詳細」に依存すべきではない。「詳細」が「抽象」に依存すべきである。
 
 ---
 
+# OCPなみの訳わからなさ
+
+---
+
+# なので例示します
+
+## DIPに違反した状態
+
+    !c++
+    class Higher {
+        ...
+        Middle mMid;
+    };
+    class Middle {
+        ...
+        Lower* mLower;
+    };
+    class Lower {
+        ...
+    };
+
+---
+
+# クラス図
+
+## DIPに違反した状態
+
+![No good](./dip_ng.png)
+
+---
+# 何がいけない？
+
+---
+
+# 何がいけない？
+
+## 特徴
+- `Higher`クラスは`Middle`(実装を持つクラス)に依存している。
+    - メンバー変数として
+- `Middle`クラスは`Lower`(実装を持つクラス)に…以下略
+    - ポインタとはいえ実装を持つクラス＝具象クラスをメンバー変数として
+
+## 問題点
+
+
+---
 
 # ISP - インターフェース分離の原則
 
