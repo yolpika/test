@@ -11,9 +11,6 @@
 
 OOD：Object Oriented Design、オブジェクト指向設計
 
-## Presenter notes
-
-
 
 ---
 
@@ -24,7 +21,7 @@ OOD：Object Oriented Design、オブジェクト指向設計
 - **S**RP：単一責務の原則 (Single Responsibility Principle)
 - **O**CP：開放-閉鎖の原則 (Open-Close Prin...)
 - **L**SP：リスコフの置換則 (Liskov's Substitution...)
-- **I**SP：インターフェース分離の原則 (Interface Seggrigation...)
+- **I**SP：インターフェース分離の原則 (Interface Segregation...)
 - **D**IP：依存関係逆転の原則 (Dependency Inversion...)
 
 ## 何の原則？
@@ -256,10 +253,14 @@ MODIFICATION.
 		}
 	}
 
-- 図形が増えるにしたがって長たらしくなりそうだった`switch..case`文が姿を消しました。
-- もし今後新たな図形`Triangle`をサポートすることになっても、`DrawAllShapes`は無改造で済みます。
+## `DrawAllShapes`は
 
-`DrawAllShapes`は拡張に際して変更が不要、つまり__ 拡張に対して開いている __  状態になりました。
+- 扱う図形を増やすには`Shape`から派生したクラスを追加すればよい。
+    - (機能的な)拡張に際して「追加」で済む
+- 新たな図形(e.g. `Triangle`)を追加しても無改造で済む。
+    - 拡張に際して既存部分の変更が不要
+
+つまり__拡張に対して開いて__ おりかつ__変更に対して閉じた__状態になりました。
 
 ---
 
@@ -612,6 +613,9 @@ C++言語を用いる場合で、`main()`関数で`Higher`クラスを利用す�
 
 # LSP - リスコフの置換則
 
+---
+
+# LSP - リスコフの置換則
 Liskov's Substitution Principle ： リスコフの置換則
 
 ## 定義
@@ -652,7 +656,7 @@ WITHOUT KNOWING IT.
     };
     class Square : public Rectangle {
     public:
-        set_witdh(int w);
+        set_width(int w);
         set_height(int h);
     };
 
@@ -669,7 +673,7 @@ WITHOUT KNOWING IT.
     // どっちを呼んでも正方形！
     class Square : public Rectangle {
     public:
-        set_witdh(int w) { m_width = w; m_height = w; };
+        set_width(int w) { m_width = w; m_height = w; };
         set_height(int h) { m_height = h; m_width = h; };
     };
 
@@ -787,13 +791,13 @@ SRPと同じく「混ぜるな危険」系の原則です。
 
 だから、できればちゃんと理解して実践して身につけたいと思っています。
 
-学ぶべきトピックスは他にも数多くあります。
+学ぶべきトピックスは他にも数多くありますんで、
 道のりは長く一人では心が折れそうになります。
 
 できれば同じような志の仲間と継続的に学び、
 実践に活かしたいと思っています。
 
-誰か一緒に何かやりませんか？
+.notes: 誰か一緒に何かやりませんか？
 
 ---
 
@@ -807,4 +811,13 @@ SRPと同じく「混ぜるな危険」系の原則です。
 - オブラブ(旧オブジェクト倶楽部)
     - 日本でのオブジェクト指向言語・設計手法黎明期のわかりやすい記事多数
         - http://www.objectclub.jp/
+
+## 関連キーワード
+
+OOD、OOA、オブジェクト倶楽部、オブラブ、ObjectMentor、Uncle Bob、抽象化、純粋仮想関数、インターフェース、デザインパターン、リファクタリング
+
+
+***
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.1/jp/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="./88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">OODの五大原則のお話</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">T.Saitow</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.1/jp/">Creative Commons 表示 - 非営利 - 継承 2.1 日本 License</a>.
+
 
