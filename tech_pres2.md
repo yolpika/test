@@ -43,3 +43,4 @@
     - XPエクストリームプログラミング入門
     - Scrum Boot Camp本
 
+# Q and A
