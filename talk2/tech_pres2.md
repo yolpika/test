@@ -122,8 +122,13 @@ TODO
 ---
 # ブーム？ファッション？
 
-## 一過性のブームではなくなってきている。
+## 実は今二度めのブーム
+- 一度目は1990年後半から2000年初頭に海外を中心に、日本でもいくつか書籍が出るなどした。
+- 二度めは2008年か2009年から。アジャイルマニフェスト宣言から10年を経過して今再び的な。
 
+---
+# ブーム？ファッション？
+## 今度は一過性のブームではなくなってきている。
 - VersionOne社の2011年のレポート[3]によると
     - 何らかのアジャイル開発のプラクティスを取り入れている企業：８０％
         - 逆に取り入れていない：１５％
@@ -139,7 +144,7 @@ TODO
 - Agile Allianceによる国際イベント
 
 ## Agile Japan
-- アジャイルジャパン実行委員会によるイベント
+- 2009年に始まったアジャイルジャパン実行委員会によるイベント
 - 2009年以来札幌でも同日サテライト開催されている
 
 ## Scrum Boot Camp
@@ -172,22 +177,28 @@ TODO
 ---
 # 用語補足
 - プロダクト
-- スプリント
-- インクリメント
-- バックログ
+    - 製品、サービス何でもよいが、スクラムを通じて提供する、価値のもととなるもの
 - レトロスペクティブ
-
-TODO:どうもこれらはここにあると落ち着きが悪い。必要とされるところに分散するか。
+    - A.K.A 振り返り
 	
 
 ---
 # 役割
+
 ---
 # 役割：プロダクトオーナー
 
-> 
+## 何に責任を持つか
+- プロダクトの価値を最大化する
+- 開発チームが行う作業の価値を保証する
+- 「プロダクトバックログ」の管理
+    - アイテムの優先順位づけ、プロダクトの価値を最大化するように。
+    - アイテムの明確化、開発チームが理解できるように。
 
-## なすところ
+## 特徴
+- 原則、一人の人
+- 開発チームに作業を依頼できる唯一の人
+
 
 ---
 # 役割：開発チーム
@@ -203,14 +214,18 @@ TODO:どうもこれらはここにあると落ち着きが悪い。必要とさ
 
 こんなイベントがある。イベントはスクラムによるソフトウェア開発過程にリズムと検証の機会をもたらす。
 
+- スプリント
 - スプリント計画ミーティング
 - デイリースクラム
 - スプリントレビュー
 - スプリントレトロスペクティブ
 
 ---
-# イベント：スプリント計画ミーティング
+# イベント：スプリント
 
+
+---
+# イベント：スプリント計画ミーティング
 TODO：スプリントで何を目指すのか、何をしでかすのかを全員で計画する。
 
 ---
@@ -275,7 +290,7 @@ TODO：プロダクトバックログ
 ---
 # 文献
 
-1. [Managing the Development of Large Software Systems](http://www.cs.umd.edu/class/spring2003/cmsc838p/Process/waterfall.pdf)
+1. Winston W. Royce, [Managing the Development of Large Software Systems](http://www.cs.umd.edu/class/spring2003/cmsc838p/Process/waterfall.pdf), Proceedings, IEEE WESCON, Aug. 1970.
 1. [アジャイルソフトウェア宣言](http://agilemanifesto.org/iso/ja/)
 1. [State of Agile Development Survey Results](http://www.versionone.com/state_of_agile_development_survey/11/)
 1. [スクラム道](http://www.taoofscrum.org/contents/)
@@ -283,11 +298,11 @@ TODO：プロダクトバックログ
 ---
 
 # 参考
-- [スクラムガイド(邦訳)](http://www.scrum.org/Portals/0/Documents/Scrum%20Guides/Scrum%20Guide%20-%20JA.pdf)
-- 塹壕よりスクラムとXP
-- アジャイル開発とスクラム
-- XPエクストリームプログラミング入門
-- Scrum Boot Camp本
+- Jeff Sutherland, Ken Schwaber, Japanese translation by Kenji Hiranabe, [スクラムガイド(邦訳)](http://www.scrum.org/Portals/0/Documents/Scrum%20Guides/Scrum%20Guide%20-%20JA.pdf)
+- Henrik Kniberg, Japanese translation by Ryutaro Yoshiba, [塹壕よりスクラムとXP](http://www.infoq.com/jp/minibooks/scrum-xp-from-the-trenches)
+- 平鍋健児, 野中郁次郎, [アジャイル開発とスクラム 顧客・技術・経営をつなぐ協調的ソフトウェア開発マネジメント](http://www.seshop.com/product/detail/15329/), 翔泳社, 2013
+- Kent Beck, 長瀬嘉秀(訳), テクノロジックアート(訳), [XPエクストリームプログラミング入門](http://www.amazon.co.jp/XP%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%BB%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E5%85%A5%E9%96%80%E2%80%95%E5%A4%89%E5%8C%96%E3%82%92%E5%8F%97%E3%81%91%E5%85%A5%E3%82%8C%E3%82%8B-%E3%82%B1%E3%83%B3%E3%83%88-%E3%83%99%E3%83%83%E3%82%AF/dp/4894716852)  第2版, ピアソンエデュケーション, 2005
+- 西村 直人, 永瀬美穂, 吉羽龍太郎, [SCRUM BOOT CAMP THE BOOK](http://www.seshop.com/product/detail/15395/), 翔泳社, 2013
 
 ---
 # Q and A
