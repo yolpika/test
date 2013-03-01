@@ -14,8 +14,8 @@ body {
 }
 
 div.slide {
-    min-width: 800px;
-    min-height: 600px;
+    min-width: 900px;
+    min-height: 700px;
     padding: 1em;
     overflow: hidden;
     page-break-after: always;
