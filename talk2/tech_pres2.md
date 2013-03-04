@@ -704,3 +704,7 @@
 
 ---
 # Q and A
+
+
+***
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.1/jp/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="./88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">スクラムの話</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">T.Saitow</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.1/jp/">Creative Commons 表示 - 非営利 - 継承 2.1 日本 License</a>.
