@@ -1,10 +1,5 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
 @page {
-    size: landscape;
+    size: 29.7cm 21cm;
 }
 
 body {
